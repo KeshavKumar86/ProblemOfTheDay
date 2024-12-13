@@ -31,7 +31,7 @@ public class OverlappingIntervals {
                 result.add(arr[i]);
                 count++;
             }
-           else if (result.get(count)[1] < arr[i][1]) {
+            else if (result.get(count)[1] < arr[i][1]) {
                 int[] remove = result.remove(count);
                 result.add(new int[]{remove[0], arr[i][1]});
             }
