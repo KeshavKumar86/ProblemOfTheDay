@@ -17,22 +17,48 @@ public class MergeWithoutExtraSpace {
 
     private static void mergeArrays(int[] a, int[] b) {
 
-        int n = a.length, m = b.length;
-        int i = 0, j = 0;
-
-        // Traverse both arrays
-        while (i < n && j < m) {
-            if (a[i] > b[j]) {
-                // Swap elements
-                int temp = a[i];
-                a[i] = b[j];
-                b[j] = temp;
+        //using gap procedure of shell sort
+        int n = a.length;
+        int m = b.length;
+        int len = n + m;
+        int gap = (len / 2) + (len % 2);
+        while (gap > 0) {
+            int i = 0;
+            int j = i + gap;
+            while (j < len) {
+                //when both the pointer in the first array a
+                if (j < n) {
+                    if (a[i] > a[j]) {
+                        //swap
+                        int temp = a[i];
+                        a[i] = a[j];
+                        a[j] = temp;
+                    }
+                }
+                //when i is in the first array and j is in the second array
+                else if (i < n) {
+                    if (a[i] > b[j - n]) {
+                        int temp = a[i];
+                        a[i] = b[j - n];
+                        b[j - n] = temp;
+                    }
+                }
+                //when both is in the second half
+                else {
+                    if (b[i - n] > b[j - n]) {
+                        int temp = b[i - n];
+                        b[i - n] = b[j - n];
+                        b[j - n] = temp;
+                    }
+                }
+                i++;
+                j++;
             }
-            i++;
+            if (gap == 1) break;
+            gap = gap / 2 + gap % 2;
         }
 
-        // Sort the second array b[] to maintain order
-        Arrays.sort(b);    }
+    }
 }
 /*
 Solution1: Naive approach
@@ -67,4 +93,14 @@ Solution4: optimal approach1 without using extra space
 Time Complexity o(min(n,m) + nlogn + mlogm)
 Space complexity O(1)
 
+Solution5: optimal approach2 using shell sort gap procedure
+Intuition
+Use the gap method inspired by the Shell sort algorithm to efficiently merge the arrays in place.
+Steps
+Treat the two arrays as a single array with a virtual gap between them.
+Start with a gap value equal to n+m, and reduce the gap by half in each iteration.
+Compare and swap elements within a[], between a[] and b[], and within b[] depending on the indices.
+Continue until the gap becomes 0.
+Time Complexity o((n+m)log(n+m))
+Space complexity O(1)
  */
