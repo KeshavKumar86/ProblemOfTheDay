@@ -25,7 +25,13 @@ public class SortedAndRotatedMinimum {
 Solution1: Naive Solution using linear search
 Time complexity: O(n)
 space complexity: O(1)
+
 Solution2: Optimal Solution using binary search
+1.calculate mid
+2.if mid is greater than the arr[arr.length-1] then we are in the first half
+we have to move to the right (left = mid+1)
+3.if mid is less than the arr[arr.length-1] then we are in the second half
+we have to move to the left (right = mid-1)
 Time complexity: O(logn)
 space complexity: O(1)
  */
