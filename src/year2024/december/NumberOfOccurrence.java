@@ -64,7 +64,10 @@ public class NumberOfOccurrence {
 First Solution: Brute Force Approach (Naive Approach)
 using linear search: iterate the array and check if arr[i] is equal to target, if it is than
 increase frequency by 1
-Second Solution: Optimal Solution
+Time complexity: O(n)
+Space complexity: O(1)
+
+Second Solution: Optimal Solution using binary search because array is sorted
 Using Binary search: because array is sorted we can make use of binary search
 First find the starting index using binary search
 if(arr[mid] == target) and
@@ -78,5 +81,7 @@ if (mid == arr.length - 1 || arr[mid + 1] != target) {
                 } else {
                     left = mid + 1;//search on the right side
                 }
+Time complexity: O(logn)
+Space complexity: O(1)
  */
 
