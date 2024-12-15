@@ -91,11 +91,20 @@ Overall Space Complexity: O(n+m) = O(n)
 Explanation of KMP:
 Preprocessing: The LPS (Longest Prefix Suffix) array ensures that we skip unnecessary comparisons
 during the substring search. Constructing the LPS array takes
-O(m).
+O(m). This preprocessing ensures that when a mismatch occurs, we know how far to "backtrack" in the
+pattern.
 
 Search: The search phase matches the pattern against the text efficiently in
 O(n).
 
 This approach ensures that even for large strings, the solution runs efficiently without exceeding
 the time limits.
+txt = aaaxaaax
+pat = aaaa
+
+txt = aaaxaaaa
+pat = aaaa
+
+for LPS
+pat = aaaxaaax
  */
