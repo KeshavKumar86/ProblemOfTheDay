@@ -52,7 +52,7 @@ Overwrite the array with 0s, followed by 1s, and then 2s.
 Time Complexity
 O(n) (one pass to count + one pass to overwrite).
 Space Complexity
-O(1) (in-place
+O(1) (in-place)
 
 Solution3: 3. Dutch National Flag Algorithm (Optimal Approach)
 This approach uses three pointers to partition the array into three segments for 0s, 1s, and 2s.
