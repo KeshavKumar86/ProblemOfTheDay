@@ -36,9 +36,9 @@ if i==0 then if arr[i]>arr[i+1] then also arr[i] is the peak element
 if i=length-1 then if arr[i]>arr[i-1] then also arr[i] is the peak element
 Time Complexity: O(n)
 Space complexity: O(1)
+
 Solution2: using linear search
 If we observe carefully, we can say that:
-
 If an element is smaller than it's next element then it is guaranteed that at least one peak element
 will exist on the right side of this element.
 Conversely, if an element is smaller than it's previous element then it is guaranteed that at least
