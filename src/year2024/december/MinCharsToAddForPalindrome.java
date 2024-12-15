@@ -79,39 +79,4 @@ Now to find this prefix the idea is to use lps array of KMP algorithm,
 Complexity:
 Time complexity: O(n), where n is the length of the combined string.
 Space complexity: O(n) for the LPS array and for concatenatedString.
-
-2. Using Two Pointers
-This approach tries to find the longest palindrome suffix directly without creating additional data structures.
-
-Steps:
-Use two pointers (left and right).
-Move the right pointer until a palindrome suffix is found.
-The number of unmatched characters on the left gives the minimum characters to add.
-Java Implementation:
-public class PalindromeMinAdd {
-    public static int minCharsToAdd(String s) {
-        int left = 0, right = s.length() - 1;
-        int unmatched = 0;
-
-        while (left < right) {
-            if (s.charAt(left) == s.charAt(right)) {
-                left++;
-                right--;
-            } else {
-                unmatched++;
-                left = 0; // Reset left pointer
-                right = s.length() - 1 - unmatched; // Shorten string from the right
-            }
-        }
-        return unmatched;
-    }
-
-    public static void main(String[] args) {
-        String s = "abc";
-        System.out.println("Minimum characters to add: " + minCharsToAdd(s)); // Output: 2
-    }
-}
-Complexity:
-Time complexity: O(n) in most cases, as we typically move through the string once.
-Space complexity: O(1).
  */
