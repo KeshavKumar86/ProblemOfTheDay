@@ -5,8 +5,8 @@ import java.util.Arrays;
 public class AggressiveCows {
     public static void main(String[] args) {
 
-        int[] arr = {2, 12, 11, 3, 26, 7};
-        int cow = 3;
+        int[] arr = {0, 1, 2};
+        int cow = 2;
         int result = aggressiveCows(arr, cow);
         System.out.println("Result: " + result);
     }
@@ -21,11 +21,28 @@ public class AggressiveCows {
         if (k == 1) {
             return max - min;
         }
-        for (int i = 1; i <= (max - min); i++) {
+        //linear Search
+        /*for (int i = 1; i <= (max - min); i++) {
             if (!isPossible(stalls, i, k)) {
                 return i - 1;
             }
+        }*/
+        //Binary search
+        int low = 1, high = max - min;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (!isPossible(stalls, mid, k) && isPossible(stalls, mid - 1, k)) {
+                return mid - 1;
+            } else if (!isPossible(stalls, mid, k)) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+
         }
+        int mid = (low + high) / 2;
+        if (isPossible(stalls, mid, k))
+            return mid;
         return 0;
     }
 
