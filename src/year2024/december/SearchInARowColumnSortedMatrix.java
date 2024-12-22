@@ -7,7 +7,7 @@ public class SearchInARowColumnSortedMatrix {
         arr[0] = new int[]{3, 30, 38};
         arr[1] = new int[]{20, 52, 54};
         arr[2] = new int[]{35, 60, 69};
-        int x = 62;
+        int x = 69;
 
         System.out.println(matSearch(arr, x));
 
@@ -15,15 +15,26 @@ public class SearchInARowColumnSortedMatrix {
 
     private static boolean matSearch(int[][] mat, int x) {
 
-        for (int[] ints : mat) {
-            if (binarySearch(ints, x)) {
-                return true;
+        int n = mat.length;
+        int m = mat[0].length;
+        if(n<=m){
+            for (int[] ints : mat) {
+                if (rowBinarySearch(ints, x)) {
+                    return true;
+                }
+            }
+        }
+        else{
+            for(int col=0;col<m;col++){
+                if(columnBinarySearch(mat,col,x)){
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    private static boolean binarySearch(int[] arr, int target) {
+    private static boolean rowBinarySearch(int[] arr, int target) {
 
         int low = 0, high = arr.length - 1;
         while (low <= high) {
@@ -31,6 +42,21 @@ public class SearchInARowColumnSortedMatrix {
             if (arr[mid] == target) {
                 return true;
             } else if (arr[mid] > target) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return false;
+    }
+    private static boolean columnBinarySearch(int[][] arr,int column, int target) {
+
+        int low = 0, high = arr.length - 1;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (arr[mid][column] == target) {
+                return true;
+            } else if (arr[mid][column] > target) {
                 high = mid - 1;
             } else {
                 low = mid + 1;
