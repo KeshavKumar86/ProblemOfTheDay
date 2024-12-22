@@ -4,62 +4,27 @@ public class SearchInARowColumnSortedMatrix {
     public static void main(String[] args) {
 
         int[][] arr = new int[3][];
-        arr[0] = new int[]{3, 30, 38};
-        arr[1] = new int[]{20, 52, 54};
-        arr[2] = new int[]{35, 60, 69};
-        int x = 69;
+        arr[0] = new int[]{1,2,3};
+        arr[1] = new int[]{4,5,6};
+        arr[2] = new int[]{7,8,9};
+        int x = 10;
 
         System.out.println(matSearch(arr, x));
-
     }
 
     private static boolean matSearch(int[][] mat, int x) {
 
         int n = mat.length;
         int m = mat[0].length;
-        if(n<=m){
-            for (int[] ints : mat) {
-                if (rowBinarySearch(ints, x)) {
-                    return true;
-                }
-            }
-        }
-        else{
-            for(int col=0;col<m;col++){
-                if(columnBinarySearch(mat,col,x)){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private static boolean rowBinarySearch(int[] arr, int target) {
-
-        int low = 0, high = arr.length - 1;
-        while (low <= high) {
-            int mid = (low + high) / 2;
-            if (arr[mid] == target) {
+        int row = 0, column = m-1;
+        while(row<n && column>=0){
+            if(mat[row][column] == x){
                 return true;
-            } else if (arr[mid] > target) {
-                high = mid - 1;
-            } else {
-                low = mid + 1;
+            } else if (mat[row][column] > x) {
+                column--;
             }
-        }
-        return false;
-    }
-    private static boolean columnBinarySearch(int[][] arr,int column, int target) {
-
-        int low = 0, high = arr.length - 1;
-        while (low <= high) {
-            int mid = (low + high) / 2;
-            if (arr[mid][column] == target) {
-                return true;
-            } else if (arr[mid][column] > target) {
-                high = mid - 1;
-            } else {
-                low = mid + 1;
+            else {
+                row++;
             }
         }
         return false;
@@ -80,4 +45,15 @@ Solution3: Because every row and column is sorted use binary search for searchin
 column depending on which is small.
 if no. of row is small - use binary search on row.
 if no. of column is small - use binary search on column.
+Time complexity: O(min(n⋅logm,m⋅logn))
+Space complexity: O(1)
+
+Solution4: Optimal Solution
+start from the top-right corner
+check if x is less than the element,
+  if x is less move left
+  if x is greater move bottom.
+Time complexity: O(n+m)
+Space complexity: O(1)
+
  */
