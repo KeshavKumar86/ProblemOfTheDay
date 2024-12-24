@@ -8,7 +8,7 @@ public class SearchInASortedMatrix {
         arr[0] = new int[]{1, 5, 9};
         arr[1] = new int[]{14, 20, 21};
         arr[2] = new int[]{30, 34, 43};
-        int x = 20;
+        int x = 9;
 
         System.out.println("Search Result: " + searchMatrix(arr, x));
 
@@ -16,36 +16,16 @@ public class SearchInASortedMatrix {
 
     private static boolean searchMatrix(int[][] mat, int x) {
 
-        //binary search
         int n = mat.length;
         int m = mat[0].length;
-        //first check in which row element will be present
-        int low = 0, high = n - 1;
-        int col = m - 1;
+        int low = 0, high = n * m - 1;
         while (low <= high) {
             int mid = (low + high) / 2;
-            if (mat[mid][col] == x) {
+            int row = mid / m;
+            int column = mid % m;
+            if (mat[row][column] == x) {
                 return true;
-            } else if (mat[mid][col] > x) {
-                high = mid - 1;
-            } else {
-                low = mid + 1;
-            }
-        }
-        //in above loop either you will find element or you will get the row that should have that
-        //element
-        int row = low;
-        if (row >= n) {
-            return false;
-        }
-        low = 0;
-        high = m - 1;
-
-        while (low <= high) {
-            int mid = (low + high) / 2;
-            if (mat[row][mid] == x) {
-                return true;
-            } else if (mat[row][mid] > x) {
+            } else if (mat[row][column] > x) {
                 high = mid - 1;
             } else {
                 low = mid + 1;
@@ -68,7 +48,7 @@ check if x is less than the element,
 Time complexity: O(n+m)
 Space complexity: O(1)
 
-Solution3: More Better Solution (Using binary search twice)
+Solution3: Optimal Solution (Using binary search twice)
 take last column and low = 0 and high = n-1 and find the row that should have element.
 then use binary search to search that element in that particular row.
 Time complexity: O(logn + logm)
@@ -76,7 +56,7 @@ logn - To find the row that should have that element
 logm - To find the element in that particular row.
 Space complexity: O(1)
 
-Solution4: Optimal Search (using binary search once)
+Solution4: Optimal Solution (using binary search once)
 Take low = 0 and high = n*m-1
 find middle and apply below formula to find the row and column
 row = middle/no of column;
