@@ -1,6 +1,6 @@
 package year2024.december;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class SetMatrixZeroes {
     public static void main(String[] args) {
@@ -29,25 +29,37 @@ public class SetMatrixZeroes {
         int n = mat.length;
         int m = mat[0].length;
 
-        //make a copy of matrix
-        int[][] arr = new int[n][m];
-        for (int i = 0; i < n; i++) {
-            System.arraycopy(mat[i], 0, arr[i], 0, m);
-        }
+        List<Integer> rows = new ArrayList<>();
+        Set<Integer> set = new HashSet<>();
+
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if (arr[i][j] == 0) {
-                    //make whole row zero
-                    for (int k = 0; k < m; k++) {
-                        mat[i][k] = 0;
+                if (mat[i][j] == 0) {
+                    if (rows.isEmpty()) {
+                        rows.add(i);
+                    } else {
+                        if (rows.get(rows.size() - 1) != i) {
+                            rows.add(i);
+                        }
                     }
-                    //make whole column zero
-                    for (int k = 0; k < n; k++) {
-                        mat[k][j] = 0;
-                    }
+                    set.add(j);
                 }
+
             }
         }
+        //make all rows zero which contain zero
+        for (int row : rows) {
+            for (int j = 0; j < m; j++) {
+                mat[row][j] = 0;
+            }
+        }
+        //make all column zero which contain zero
+        for (int col : set) {
+            for (int i = 0; i < n; i++) {
+                mat[i][col] = 0;
+            }
+        }
+
     }
 }
 /*
@@ -55,6 +67,10 @@ Solution1: Brute Force Solution
 Time complexity: O((n*m)(n+m))
 Space complexity: O(n*m)
 
-Solution2: Little Improved Solution
-
+Solution2: Improved Solution
+Store the rows and columns having zeros O(n*m)
+set the rows to zeros having zeros O(n*m)
+set the columns to zeros having zeros O(n+m)
+Time complexity: O(n*m)
+Space complexity: O(n+m)
  */
