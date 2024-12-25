@@ -29,37 +29,40 @@ public class SetMatrixZeroes {
         int n = mat.length;
         int m = mat[0].length;
 
-        List<Integer> rows = new ArrayList<>();
-        Set<Integer> set = new HashSet<>();
+        boolean rowZero = false;
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (mat[i][j] == 0) {
-                    if (rows.isEmpty()) {
-                        rows.add(i);
+        for (int row = 0; row < n; row++) {
+            for (int col = 0; col < m; col++) {
+                if (mat[row][col] == 0) {
+                    mat[0][col] = 0;
+                    if (row == 0) {
+                        rowZero = true;
                     } else {
-                        if (rows.get(rows.size() - 1) != i) {
-                            rows.add(i);
-                        }
+                        mat[row][0] = 0;
                     }
-                    set.add(j);
                 }
-
             }
         }
-        //make all rows zero which contain zero
-        for (int row : rows) {
-            for (int j = 0; j < m; j++) {
-                mat[row][j] = 0;
+        //make all rows and columns zero which contain zero except first row and first column
+        for (int row = 1; row < n; row++) {
+            for (int col = 1; col < m; col++) {
+                if (mat[0][col] == 0 || mat[row][0] == 0) {
+                    mat[row][col] = 0;
+                }
             }
         }
-        //make all column zero which contain zero
-        for (int col : set) {
-            for (int i = 0; i < n; i++) {
-                mat[i][col] = 0;
+        //make first column zero
+        if (mat[0][0] == 0) {
+            for (int row = 0; row < n; row++) {
+                mat[row][0] = 0;
             }
         }
-
+        //make first row zero
+        if (rowZero) {
+            for (int col = 0; col < m; col++) {
+                mat[0][col] = 0;
+            }
+        }
     }
 }
 /*
@@ -71,6 +74,13 @@ Solution2: Improved Solution
 Store the rows and columns having zeros O(n*m)
 set the rows to zeros having zeros O(n*m)
 set the columns to zeros having zeros O(n+m)
+Time complexity: O(n*m)
+Space complexity: O(n+m)
+
+Solution3: Optimal Solution
+Intuition: Instead of using extra space for store the rows having zeros, we will use first column.
+for storing the columns having zeros we will use zeroth row.
+for 00 it will overlap, so we will use one extra variable for 0 row.
 Time complexity: O(n*m)
 Space complexity: O(n+m)
  */
