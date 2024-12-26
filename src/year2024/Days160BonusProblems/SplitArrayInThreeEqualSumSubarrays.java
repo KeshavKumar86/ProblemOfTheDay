@@ -46,7 +46,14 @@ public class SplitArrayInThreeEqualSumSubarrays {
     }
 }
 /*
-Solution1: Optimal Solution
+Solution1: [Naive Approach]
+By finding all possible partitions - O(n^3) Time and O(1) Space
+The idea is to try all possible partitions using two variables, say i and j such that the first
+segment will be arr[0...i], the second segment will be arr[i+1...j] and the third segment will be
+arr[j+1...n-1]. For any partition, if the sum of all three segments are equal, then we can return
+[i, j] as a valid partition. Otherwise, return [-1, -1].
+
+Solution2: Optimal Solution
 Find the total sum and check if it is divisible by 3, if it is than solution is possible otherwise
 return -1,-1.
 If it is divisible by 3 than we have to find 3 consecutive sub-arrays which has sum = totalSum/3;
