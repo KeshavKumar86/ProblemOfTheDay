@@ -1,7 +1,6 @@
 package year2024.december;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Arrays;
 
 public class TwoSum {
     public static void main(String[] args) {
@@ -14,13 +13,28 @@ public class TwoSum {
 
     private static boolean twoSum(int[] arr, int target) {
 
-        Set<Integer> set = new HashSet<>();
+        //optimal Solution
+        /*Set<Integer> set = new HashSet<>();
         for (int element : arr) {
             int value = target - element;
             if (set.contains(value)) {
                 return true;
             } else {
                 set.add(element);
+            }
+        }
+        return false;*/
+
+        //Solution2: using 2 pointer
+        Arrays.sort(arr);
+        int low = 0, high = arr.length - 1;
+        while (low < high) {
+            if ((arr[low] + arr[high]) == target) {
+                return true;
+            } else if ((arr[low] + arr[high]) > target) {
+                high--;
+            } else {
+                low++;
             }
         }
         return false;
