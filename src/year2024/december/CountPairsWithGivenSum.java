@@ -34,3 +34,21 @@ public class CountPairsWithGivenSum {
         return (result + ((sameCount * (sameCount - 1)) / 2));
     }
 }
+/*
+Solution1: Brute force Solution
+Run 2 loop and take every possible pair and check if it satisfies the condition, and if it satisfies
+then increase result by 1.
+Time complexity: O(n*n)
+Space complexity: O(1)
+
+Solution2: Using Binary Search
+Sorting and Binary Search - O(n*log(n)) time and O(1) space, to search we will use binary search
+instead of liner search as in solution 1.
+Time complexity: O(nlogn)
+Space complexity: O(1)
+
+Solution3: Optimal Solution
+Use HashMap to store the element and their frequencies
+Time complexity: O(n)
+Space complexity: O(n)
+ */
