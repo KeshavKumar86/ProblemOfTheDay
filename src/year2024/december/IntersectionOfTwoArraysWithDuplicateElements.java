@@ -8,29 +8,27 @@ public class IntersectionOfTwoArraysWithDuplicateElements {
     public static void main(String[] args) {
 
         //a[] = [1, 2, 1, 3, 1], b[] = [3, 1, 3, 4, 1]
-        int[] a = new int[]{1,2,3};
-        int[] b = new int[]{4,5,6};
+        int[] a = new int[]{1, 2, 1, 3, 1};
+        int[] b = new int[]{3, 1, 3, 4, 1};
         ArrayList<Integer> result = intersectionWithDuplicates(a, b);
         System.out.println("Intersection result: " + result);
     }
 
     private static ArrayList<Integer> intersectionWithDuplicates(int[] a, int[] b) {
 
-        Set<Integer> set1 = new HashSet<>();
-        Set<Integer> set2 = new HashSet<>();
+        Set<Integer> set = new HashSet<>();
         ArrayList<Integer> list = new ArrayList<>();
 
         for (int element : a) {
-            set1.add(element);
+            set.add(element);
         }
+        //iterate over the array b and check if element is present in set or not
+        // if it presents than add it in the result and remove from the set so that duplicate will
+        //not come
         for (int element : b) {
-            set2.add(element);
-        }
-        //iterate over any set and check if element is present in another set or not
-        // if it presents than add it in the result
-        for (int element : set1) {
-            if (set2.contains(element)) {
+            if (set.contains(element)) {
                 list.add(element);
+                set.remove(element);
             }
         }
         return list;
@@ -51,4 +49,10 @@ Time complexity: O(n+m)
 Space complexity: O(n+m)
 
 Solution3: Optimal Solution2 (little improved)
+Iterate array a and add the elements in the set.
+iterate over the array b and check if element is present in set or not
+if it presents than add it in the result and remove from the set so that duplicate will
+not come.
+Time complexity: O(n+m)
+Space complexity: O(n)
  */
