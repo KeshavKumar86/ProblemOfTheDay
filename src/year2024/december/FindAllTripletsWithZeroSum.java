@@ -19,33 +19,34 @@ public class FindAllTripletsWithZeroSum {
         Set<List<Integer>> result = new HashSet<>();
         List<Integer> list;
         int n = arr.length;
-
         Map<Integer, List<Integer>> map = new HashMap<>();
         for (int i = 0; i < n; i++) {
-            List<Integer> value;
-            if (map.containsKey(arr[i])) {
-                value = map.get(arr[i]);
-            } else {
-                value = new ArrayList<>();
+            for (int j = i + 1; j < n; j++) {
+                int key = (arr[i] + arr[j]);
+                if (map.containsKey(key)) {
+                    List<Integer> value = map.get(key);
+                    value.add(i);
+                    value.add(j);
+                    map.put(key, value);
+                } else {
+                    list = new ArrayList<>();
+                    list.add(i);
+                    list.add(j);
+                    map.put((arr[i] + arr[j]), list);
+                }
             }
-            value.add(i);
-            map.put(arr[i], value);
         }
         for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
-                int target = -(arr[i] + arr[j]);
-                if (map.containsKey(target)) {
-                    List<Integer> value = map.get(target);
-                    for (int element : value) {
+            if (map.containsKey(-arr[i])) {
+                List<Integer> value = map.get(-arr[i]);
+                for (int j = 0; j < value.size(); j = j + 2) {
+                    if (i != value.get(j) && i != value.get(j + 1)) {
                         list = new ArrayList<>();
-                        if (i != element && j != element) {
-                            list.add(i);
-                            list.add(j);
-                            list.add(element);
-                            Collections.sort(list);
-                            result.add(list);
-                        }
-
+                        list.add(value.get(j));
+                        list.add(value.get(j + 1));
+                        list.add(i);
+                        Collections.sort(list);
+                        result.add(list);
                     }
                 }
             }
@@ -72,5 +73,12 @@ for most real-world inputs, assuming the map's lists are relatively short.
 Space complexity: O(n^3) (no. of triplets possible in worst case)
 
 Solution3: Optimal solution
+Intuition - Instead of storing the single element in the map, and checking the sum(arr[i],arr[j])
+in the map, what we will do is reverse of it. We will store the sum(arr[i],arr[j]) as key and (i,j)
+as value in the map.This will take 2 iterations, basically sum of all possible pairs(pairSum).
+Now we will iterate through the array and check if -arr[i] is present in the map, if it is present
+than we can add this in the resulted set.
+Time Complexity: O(n^2)
+Space complexity: O(n^3) (no. of triplets possible in worst case)
 
  */
