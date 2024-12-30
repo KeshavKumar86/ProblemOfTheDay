@@ -42,3 +42,19 @@ public class RotateBy90Degree {
         }
     }
 }
+/*
+Solution1: Naive Solution
+Intuition: Use a different matrix to set the rotated value.
+Start row by row from the last column to first column, and put in the different matrix column by
+column from top to bottom.
+Copy the rotated values back to the original array
+Time complexity: O(n*m) 2 iteration
+Space Complexity: O(n*m)
+
+Solution2: Optimal Solution
+Intuition: Take the transpose of the matrix and, and rotate each column from left to right.
+Time Complexity: O(n*m) 2 iteration
+Space complexity: O(1)
+
+Solution3: Optimal Solution
+ */
