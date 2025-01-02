@@ -29,13 +29,36 @@ public class SubarraysWithSumK {
     }
 }
 /*
-Solution1: Brute Force Solution
+Solution1: Approach: Check all possible subarrays and compute their sums.
+Iterate through all possible subarrays using two nested loops.
+For each subarray, calculate its sum.
+Increment the count if the sum equals k.
+public int countSubarraysNaive(int[] nums, int k) {
+    int count = 0;
+    for (int i = 0; i < nums.length; i++) {
+        for (int j = i; j < nums.length; j++) {
+            int sum = 0;
+            for (int l = i; l <= j; l++) {
+                sum += nums[l];
+            }
+            if (sum == k) {
+                count++;
+            }
+        }
+    }
+    return count;
+}
+
+Time Complexity: O(n^3)
+Space Complexity: O(1)
+
+Solution2: Improved Brute Force Solution
 Check for every subarray if the sum is equal to target, if it is increment the result by 1.
 for(int i=0;i<n;i++)
-{ int sum = arr[i];
-for(int j = i+1;j<n;j++)
+{ int sum = 0;
+for(int j = i;j<n;j++)
 {
-sum += arr[i]
+sum += arr[j]
 if(sum == target)
 {
 count++;
@@ -45,12 +68,12 @@ count++;
 Time complexity: O(n*n)
 Space complexity: O(1)
 
-Solution2: Optimal Solution
+Solution3: Optimal Solution
 Intuition: Use prefix sum and hashing
 prefixSum1 + target = prefixSum2, it means that prefixSum2 - target is equal to prefixSum1.
 we will put every prefixSum into map with frequency and check if the prefixSum2-target is present
 in the map, if it presents that means sum from prefixSum1 to prefixSum2 is equal to target, so we will
 add in the result the frequency of the prefixSum1.
 Time complexity: O(n)
-Space complexity: O(1)
+Space complexity: O(n)
  */
