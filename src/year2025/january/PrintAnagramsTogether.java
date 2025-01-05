@@ -29,13 +29,7 @@ public class PrintAnagramsTogether {
             }
 
         }
-        ArrayList<ArrayList<String>> result = new ArrayList<>();
-
-        Set<String> keySet = map.keySet();
-        for (String key : keySet) {
-            result.add(map.get(key));
-        }
-        return result;
+        return new ArrayList<>(map.values());
     }
     private static ArrayList<ArrayList<String>> anagramsII(String[] arr) {
 
@@ -52,13 +46,7 @@ public class PrintAnagramsTogether {
                 map.put(key, value);
             }
         }
-        ArrayList<ArrayList<String>> result = new ArrayList<>();
-
-        Set<String> keySet = map.keySet();
-        for (String key : keySet) {
-            result.add(map.get(key));
-        }
-        return result;
+        return new ArrayList<>(map.values());
     }
     private static String uniqueKey(String s) {
 
