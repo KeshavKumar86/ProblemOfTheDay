@@ -1,7 +1,9 @@
 package year2024.december;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class LongestConsecutiveSubsequence {
     public static void main(String[] args) {
@@ -9,7 +11,7 @@ public class LongestConsecutiveSubsequence {
         //arr[] = [2, 6, 1, 9, 4, 5, 3]
         int[] arr = new int[]{99, 80, 60, 33, 44, 86, 34, 64, 77, 18, 39, 3, 27,
                 16, 29, 60, 67, 23, 7, 87, 6, 75, 92, 11, 59, 13, 88, 24, 98, 4, 26, 6};
-        int result = longestConsecutive(arr);
+        int result = longestConsecutiveII(arr);
         System.out.println("Result: " + result);
     }
 
@@ -41,6 +43,26 @@ public class LongestConsecutiveSubsequence {
         }
         return maxLength;
     }
+
+    private static int longestConsecutiveII(int[] arr) {
+
+        Set<Integer> set = new HashSet<>();
+        for (int element : arr) {
+            set.add(element);
+        }
+        int maxCount = 0;
+        for (int element : set) {
+            if (!set.contains(element - 1)) {
+                int count = 1;
+                while (set.contains(element + 1)) {
+                    count++;
+                    element++;
+                }
+                maxCount = Math.max(maxCount, count);
+            }
+        }
+        return maxCount;
+    }
 }
 /*
 Solution1: Using Sorting
@@ -55,6 +77,13 @@ Intuition: Use a hashmap to store the number and the consecutive sequence till t
 if map.contains(arr[i] -1) than for arr[i] sequence length will be length(arr[i]-1)+1, and we have to
 also update the sequence length for numbers arr[i]+ if they are present.
 if(map.contains(arr[i] +1 ) than we have to update the length of all sequence by 1 for values arr[i]++
+Time Complexity: O(n)
+Space complexity: O(n)
+
+Solution3: Optimal Solution using 2 iteration (very Simple Solution)
+Intuition: put every element in the set to reduce the same element and then iterate the set and check
+if the number is starting point of the sequence, if it is than check for elements+1 to it and count
+the longest length.
 Time Complexity: O(n)
 Space complexity: O(n)
 */
