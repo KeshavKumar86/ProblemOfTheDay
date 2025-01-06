@@ -45,6 +45,16 @@ Time Complexity: O(n^2)
 Space Complexity: O(1)
 
 Solution2: Better than Naive (Using binary search)
+Iterate through the array, and for every target-arr[i] find number close to it using binary search.
+Binary Search Logic to find number closest to target:
+if(arr[mid]<target)
+move low to the right
+else if(arr[mid]>target)
+move high to the left.
+else
+return the arr[mid]
+think yourself logic you will get it.
+Apply the same logic of minDiff and updating the result.
 Time complexity: O(nlogn + nlogn)
 Space complexity: O(1)
 
