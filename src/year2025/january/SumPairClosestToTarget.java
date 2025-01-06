@@ -21,38 +21,15 @@ public class SumPairClosestToTarget {
         int minDiff = Integer.MAX_VALUE;
         while (low < high) {
             int sum = arr[low] + arr[high];
+            if (Math.abs(target - sum) < minDiff) {
+                minDiff = Math.abs(target - sum);
+                list = Arrays.asList(arr[low], arr[high]);
+            }
             if (sum > target) {
-                if (minDiff > Math.abs(target - sum)) {
-                    minDiff = Math.abs(target - sum);
-                    if (list.isEmpty()) {
-                        list.add(arr[low]);
-                        list.add(arr[high]);
-                    } else {
-                        list.set(0, arr[low]);
-                        list.set(1, arr[high]);
-                    }
-                }
                 high--;
             } else if (sum < target) {
-                if (minDiff > Math.abs(target - sum)) {
-                    minDiff = Math.abs(target - sum);
-                    if (list.isEmpty()) {
-                        list.add(arr[low]);
-                        list.add(arr[high]);
-                    } else {
-                        list.set(0, arr[low]);
-                        list.set(1, arr[high]);
-                    }
-                }
                 low++;
             } else {
-                if (list.isEmpty()) {
-                    list.add(arr[low]);
-                    list.add(arr[high]);
-                } else {
-                    list.set(0, arr[low]);
-                    list.set(1, arr[high]);
-                }
                 break;
             }
 
