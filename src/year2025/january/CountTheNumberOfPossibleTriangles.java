@@ -56,7 +56,7 @@ Intuition: Using 2 pointer
 1.we will take k as last element and iterate towards 0
 take i = 0 and j = k-1 and check if
 if(arr[i]+arr[j]<=k)
-move i to the right
+move i to the right (because triangle is not possible, we have to increase the sum)
 if(arr[i]+arr[j]>k)
 count += (j-i) - all elements to the right also satisfy the condition, so we can directly calculate it.
 move j to the left.
