@@ -45,7 +45,13 @@ so increase the count by 1.
 Time complexity: O(n^3)
 Space complexity: O(1)
 
-Solution2: Optimal Solution
+Solution2: Better Solution (Using Binary search for third element)
+Take 2 pointers and iterate using 2 loops
+and to find third element use binary search.
+Time Complexity: O(n^2logn)
+Space Complexity: O(1)
+
+Solution3: Optimal Solution
 Intuition: Using 2 pointer
 1.we will take k as last element and iterate towards 0
 take i = 0 and j = k-1 and check if
