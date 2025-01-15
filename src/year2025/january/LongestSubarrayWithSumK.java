@@ -36,9 +36,10 @@ Time Complexity: O(n^2)
 Space Complexity: O(1)
 
 Solution2: Optimal Solution
-Use prefixSum and hashing, check is prefixSum-k is present in the map, if it is present count the
+Use prefixSum and hashmap, check is prefixSum-k is present in the map, if it is present count the
 length of the subarray and compare with max length, if it is greater than maxLength than update the
 maxLength.
+We will put prefixSum and index in the map.
 Note: if prefixSum is already present in the map than do not put it again, otherwise it will reduce
 the length of the longest subarray.
 Time Complexity: O(n)
