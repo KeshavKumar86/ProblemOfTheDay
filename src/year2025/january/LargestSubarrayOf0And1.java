@@ -6,28 +6,40 @@ public class LargestSubarrayOf0And1 {
     public static void main(String[] args) {
 
         //arr[] = [1, 0, 1, 1, 1, 0, 0]
-        int[] arr = new int[]{0, 0, 1, 1, 0};
-        System.out.println("Result: " + maxLen(arr));
+        int[] arr = new int[]{1, 0, 1, 1, 1, 0, 0};
+        System.out.println("Result: " + maxLenII(arr));
     }
 
     private static int maxLen(int[] arr) {
         // Your code here
         int n = arr.length;
-        for (int i = 0; i < n; i++) {
-            if (arr[i] == 0) {
-                arr[i] = -1;
-            }
-        }
         int maxLength = 0;
         int prefixSum = 0;
         HashMap<Integer, Integer> map = new HashMap<>();
         map.put(0, -1);
         for (int i = 0; i < n; i++) {
-            prefixSum += arr[i];
+            prefixSum += (arr[i] == 0 ? -1 : 1);
             if (map.containsKey(prefixSum)) {
                 maxLength = Math.max(maxLength, i - map.get(prefixSum));
             } else {
                 map.put(prefixSum, i);
+            }
+        }
+        return maxLength;
+    }
+
+    private static int maxLenII(int[] arr) {
+
+        int diff = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(0, -1);
+        int maxLength = 0;
+        for (int i = 0; i < arr.length; i++) {
+            diff += arr[i] == 0 ? -1 : 1;
+            if (map.containsKey(diff)) {
+                maxLength = Math.max(maxLength, i - map.get(diff));
+            } else {
+                map.put(diff, i);
             }
         }
         return maxLength;
