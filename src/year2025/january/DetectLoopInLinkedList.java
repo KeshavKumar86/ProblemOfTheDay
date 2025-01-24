@@ -14,6 +14,19 @@ public class DetectLoopInLinkedList {
 
     }
 
+    private static boolean detectLoopOptimal(Node head) {
+
+        Node slow = head, fast = head;
+        while (slow != null && fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private static boolean detectLoop(Node head) {
 
         Set<Node> set = new HashSet<>();
