@@ -1,4 +1,4 @@
-package year2025.january;
+package year2025.february;
 
 public class WordSearch {
     public static void main(String[] args) {
