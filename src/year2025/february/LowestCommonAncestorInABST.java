@@ -24,6 +24,26 @@ public class LowestCommonAncestorInABST {
             return root;
         }
     }
+    /*Node LCA(Node root, Node n1, Node n2) {
+
+        if (root == null) {
+            return null;
+        }
+        int low = Math.min(n1.data, n2.data);
+        int high = Math.max(n1.data, n2.data);
+        if (root.data == low || root.data == high || (root.data > low && root.data < high)) {
+            return root;
+        }
+        if (root.data < low) {
+            return LCA(root.right, n1, n2);
+        }
+        if (root.data > high) {
+            return LCA(root.left, n1, n2);
+        }
+        return null;
+
+
+    }*/
 }
 /*
 Solution1: Optimal Solution (Using recursion)
